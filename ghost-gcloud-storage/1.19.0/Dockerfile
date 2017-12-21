@@ -52,4 +52,4 @@ COPY docker-entrypoint.sh /usr/local/bin
 ENTRYPOINT ["docker-entrypoint.sh"]
 
 EXPOSE 2368
-CMD ["/usr/local/bin/dumb-init", "node", "current/index.js"]
+CMD ["node", "current/index.js"]
