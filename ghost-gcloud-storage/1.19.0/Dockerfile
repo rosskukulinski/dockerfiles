@@ -24,7 +24,7 @@ RUN set -ex; \
 	su-exec node ghost install "$GHOST_VERSION" --db sqlite3 --no-prompt --no-stack --no-setup --dir "$GHOST_INSTALL"; \
 	\
 	cd "$GHOST_INSTALL"; \
-	npm install -s ghost-google-cloud-storage; \
+	npm install -s ghost-google-cloud-storage-serve; \
 	su-exec node ghost config --ip 0.0.0.0 --port 2368 --no-prompt --db sqlite3 --url http://localhost:2368 --dbpath "$GHOST_CONTENT/data/ghost.db"; \
 	su-exec node ghost config paths.contentPath "$GHOST_CONTENT"; \
 	\
@@ -40,6 +40,8 @@ RUN set -ex; \
 # add knex-migrator bins into PATH
 # we want these from the context of Ghost's "node_modules" directory (instead of doing "npm install -g knex-migrator") so they can share the DB driver modules
 ENV PATH $PATH:$GHOST_INSTALL/current/node_modules/knex-migrator/bin
+
+ADD index.js $GHOST_CONTENT/adapters/storage/gcloud/index.js
 
 WORKDIR $GHOST_INSTALL
 

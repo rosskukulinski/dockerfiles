@@ -1,2 +1,2 @@
 'use strict';
-module.exports = require('ghost-google-cloud-storage');
+module.exports = require('ghost-google-cloud-storage-serve');
