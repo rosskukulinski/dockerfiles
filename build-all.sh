@@ -53,6 +53,7 @@ echo
 }
 
 main(){
+	rm -Rf $ERRORS
 	# get the dockerfiles
 	IFS=$'\n'
 	files=( $(find . -iname '*Dockerfile' | sed 's|./||' | sort) )
